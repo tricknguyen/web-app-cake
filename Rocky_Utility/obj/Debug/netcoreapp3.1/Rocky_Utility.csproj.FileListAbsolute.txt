@@ -1,0 +1,9 @@
+D:\.NET\ASP\Rocky_Utility\bin\Debug\netcoreapp3.1\Rocky_Utility.deps.json
+D:\.NET\ASP\Rocky_Utility\bin\Debug\netcoreapp3.1\Rocky_Utility.dll
+D:\.NET\ASP\Rocky_Utility\bin\Debug\netcoreapp3.1\Rocky_Utility.pdb
+D:\.NET\ASP\Rocky_Utility\obj\Debug\netcoreapp3.1\Rocky_Utility.csprojAssemblyReference.cache
+D:\.NET\ASP\Rocky_Utility\obj\Debug\netcoreapp3.1\Rocky_Utility.AssemblyInfoInputs.cache
+D:\.NET\ASP\Rocky_Utility\obj\Debug\netcoreapp3.1\Rocky_Utility.AssemblyInfo.cs
+D:\.NET\ASP\Rocky_Utility\obj\Debug\netcoreapp3.1\Rocky_Utility.csproj.CoreCompileInputs.cache
+D:\.NET\ASP\Rocky_Utility\obj\Debug\netcoreapp3.1\Rocky_Utility.dll
+D:\.NET\ASP\Rocky_Utility\obj\Debug\netcoreapp3.1\Rocky_Utility.pdb

@@ -1,0 +1,19 @@
+﻿@using Rocky_Utility
+
+@if (TempData[WC.Sucess] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.success('@TempData[WC.Sucess]'); //thông báo đc lấy nội dung từ biến temp data
+    </script>
+}
+
+@if (TempData[WC.Error] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.error('@TempData[WC.Error]'); //thông báo đc lấy nội dung từ temp data
+    </script>
+}

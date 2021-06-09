@@ -1,0 +1,4 @@
+D:\.NET\ASP\Rocky_Utility\obj\Release\netcoreapp3.1\Rocky_Utility.csprojAssemblyReference.cache
+D:\.NET\ASP\Rocky_Utility\obj\Release\netcoreapp3.1\Rocky_Utility.AssemblyInfoInputs.cache
+D:\.NET\ASP\Rocky_Utility\obj\Release\netcoreapp3.1\Rocky_Utility.AssemblyInfo.cs
+D:\.NET\ASP\Rocky_Utility\obj\Release\netcoreapp3.1\Rocky_Utility.csproj.CoreCompileInputs.cache

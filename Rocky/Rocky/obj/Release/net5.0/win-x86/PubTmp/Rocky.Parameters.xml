@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="RockyCRUD" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\\.NET\\ASP\\Rocky\\Rocky\\obj\\Release\\net5\.0\\win-x86\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="Rocky.Data.ApplicationDbContext" description="" value="Data Source=tcp:rockydbserver1.database.windows.net,1433;Initial Catalog=Rocky_db;User Id=gakistal@rockydbserver1;Password=Anhvuad123" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^D:\\\.NET\\ASP\\Rocky\\Rocky\\obj\\Release\\net5\.0\\win-x86\\PubTmp\\EFSQLScripts\\Rocky\.Data\.ApplicationDbContext\.sql$" />
+  </parameter>
+</parameters>

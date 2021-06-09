@@ -1,0 +1,177 @@
+﻿@page
+@model LoginModel
+
+@*
+<div id="logreg-forms">
+    <h1 class="h3 mb-3 font-weight-normal text-info pt-4" style="text-align:center;">Sign In</h1>
+    @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+    {
+        <div>
+            <p>
+                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                for details on setting up this ASP.NET application to support logging in via external services.
+            </p>
+        </div>
+    }
+    else
+    {
+        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+            <div>
+
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                    @if (provider.Name.ToLower().Contains("facebook"))
+                    {
+                        <button type="submit" class="btn btn-block facebook-btn form-control"
+                                name="provider" value="@provider.Name"
+                                title="Log in using your @provider.DisplayName account">
+                            <i class="fab fa-facebook-square"></i>@provider.DisplayName
+                        </button>
+
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+
+                    }
+                }
+
+            </div>
+        </form>
+    }
+
+
+    <form id="account" method="post">
+        @if (Model.ExternalLogins?.Count > 0)
+        {
+            <p style="text-align:center">OR</p>
+        }
+
+
+        <input asp-for="Input.Email" placeholder="Email..." type="email" class="mb-1 form-control" />
+        <input asp-for="Input.Password" placeholder="Paswsword..." type="password" class="form-control" />
+        <button type="submit" class="btn btn-success btn-block"><i class="fas fa-sign-in-alt"></i>Log in</button>
+
+        <a id="forgot-password" asp-page="./ForgotPassword" class="pb-2 text-info">Forgot your password?</a>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-info text-white">Register as a new user</a>
+
+
+    </form>
+
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}*@
+
+
+@if ((Model.ExternalLogins?.Count ?? 0) == 0)
+    {
+        <div>
+            <p>
+                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                for details on setting up this ASP.NET application to support logging in via external services.
+            </p>
+        </div>
+    }
+    else
+    {
+    
+
+            <div class="container h-100">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="user_card">
+                        <div class="d-flex justify-content-center">
+                            <div class="brand_logo_container">
+                                <img src="~/image/logo-Bakery-01.png" class="brand_logo" alt="Logo">
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                            {
+                                <div>
+                                    <p>
+                                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                        for details on setting up this ASP.NET application to support logging in via external services.
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+                                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                    <div>
+
+                                        @foreach (var provider in Model.ExternalLogins)
+                                        {
+                                            @if (provider.Name.ToLower().Contains("facebook"))
+                                            {
+                                                <button  style="margin-top:120px" type="submit" class="btn fb_btn"
+                                                        name="provider" value="@provider.Name"
+                                                        title="Log in using your @provider.DisplayName account">
+                                                    <i class="fab fa-facebook-f" style="padding-right: 10px;"></i>@provider.DisplayName
+                                                </button>
+
+                                            }
+                                            else
+                                            {
+                                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+
+                                            }
+                                        }
+
+                                    </div>
+                                </form>
+                            }
+                        </div>
+                        <div class="d-flex justify-content-center form_container" style="margin-top:18px">
+                            <form id="account" method="post">
+                                @if (Model.ExternalLogins?.Count > 0)
+                                {
+                                    <p style="text-align:center">OR</p>
+                                }
+                                <div class="input-group mb-3">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    <input asp-for="Input.Email" placeholder="Email..." type="email" class="mb-1 form-control" />
+                                </div>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    </div>
+                                    <input asp-for="Input.Password" placeholder="Paswsword..." type="password" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customControlInline">
+                                        <label class="custom-control-label" for="customControlInline">Remember me</label>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center mt-3 login_container">
+                                    <button type="submit" name="button" class="btn login_btn">Login</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-center links">
+
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="ml-2">Sign up</a>
+                            </div>
+                            <div class="d-flex justify-content-center links">
+
+                                <a id="forgot-password" asp-page="./ForgotPassword" class="pb-2 text-info">Forgot your password?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+         
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

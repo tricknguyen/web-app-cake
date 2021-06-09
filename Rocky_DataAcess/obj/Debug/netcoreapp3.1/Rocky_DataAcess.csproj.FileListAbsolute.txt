@@ -1,0 +1,14 @@
+D:\.NET\ASP\Rocky_DataAcess\bin\Debug\netcoreapp3.1\Rocky_DataAcess.deps.json
+D:\.NET\ASP\Rocky_DataAcess\bin\Debug\netcoreapp3.1\Rocky_DataAcess.dll
+D:\.NET\ASP\Rocky_DataAcess\bin\Debug\netcoreapp3.1\Rocky_DataAcess.pdb
+D:\.NET\ASP\Rocky_DataAcess\bin\Debug\netcoreapp3.1\Rocky_Models.dll
+D:\.NET\ASP\Rocky_DataAcess\bin\Debug\netcoreapp3.1\Rocky_Models.pdb
+D:\.NET\ASP\Rocky_DataAcess\obj\Debug\netcoreapp3.1\Rocky_DataAcess.csprojAssemblyReference.cache
+D:\.NET\ASP\Rocky_DataAcess\obj\Debug\netcoreapp3.1\Rocky_DataAcess.AssemblyInfoInputs.cache
+D:\.NET\ASP\Rocky_DataAcess\obj\Debug\netcoreapp3.1\Rocky_DataAcess.AssemblyInfo.cs
+D:\.NET\ASP\Rocky_DataAcess\obj\Debug\netcoreapp3.1\Rocky_DataAcess.csproj.CoreCompileInputs.cache
+D:\.NET\ASP\Rocky_DataAcess\obj\Debug\netcoreapp3.1\Rocky_DataAcess.csproj.CopyComplete
+D:\.NET\ASP\Rocky_DataAcess\obj\Debug\netcoreapp3.1\Rocky_DataAcess.dll
+D:\.NET\ASP\Rocky_DataAcess\obj\Debug\netcoreapp3.1\Rocky_DataAcess.pdb
+D:\.NET\ASP\Rocky_DataAcess\bin\Debug\netcoreapp3.1\Rocky_Utility.dll
+D:\.NET\ASP\Rocky_DataAcess\bin\Debug\netcoreapp3.1\Rocky_Utility.pdb

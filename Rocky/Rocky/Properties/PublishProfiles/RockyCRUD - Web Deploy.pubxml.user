@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAA45r0x1UwUCv/lw3//SImAAAAAACAAAAAAAQZgAAAAEAACAAAABQ/I4dz+LrCIil0zXNwFiheK67ElUzp21+adATebGhbgAAAAAOgAAAAAIAACAAAADM1nDLKOTIF3++xJJC/sgeCM0U4O4NwOfZB0m1qAJtDYAAAACx7N+r9V2p4F8JXhKLxYQVGs2SVyVNSXN+6stchq7EVUyApGEkBomwUl2La3jzoV7T2ljvkrzAbCyu84TPFAm5Yyn52bLkj1JJxLKWnyrUtUJSMoI/KkFOvBchfcriH6rICf4dopZOiGyyriuq08nYqm8oTdHXUuyI63A+bEqcFEAAAAA5F+Z0ESMg2sxKtOKdFL1iYM4HxWkaciYCyk1h2jDyLyIF3JhNHVa1DKonbIP4jMC2ix+grrDcQkDFDMw5QzZ+</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:rockydbserver1.database.windows.net,1433%3bInitial Catalog=Rocky_db%3bUser Id=gakistal%40rockydbserver1%3bPassword=Anhvuad123</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="Rocky.Data.ApplicationDbContext">
+      <Value>Data Source=tcp:rockydbserver1.database.windows.net,1433%3bInitial Catalog=Rocky_db%3bUser Id=gakistal%40rockydbserver1%3bPassword=Anhvuad123</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

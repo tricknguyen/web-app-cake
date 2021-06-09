@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\.NET\ASP\Rocky\Rocky\obj\Release\net5.0\win-x86\PubTmp\Out\" />
+  <dbfullsql path="D:\.NET\ASP\Rocky\Rocky\obj\Release\net5.0\win-x86\PubTmp\EFSQLScripts\Rocky.Data.ApplicationDbContext.sql" />
+</sitemanifest>
