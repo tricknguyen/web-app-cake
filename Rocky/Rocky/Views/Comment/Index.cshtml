@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Rocky_Models.Comment>
+
+<form method="post">
+    <div class="container p-3 bg-white" style="margin-top:80px!important;">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-primary">Comment List</h2>
+            </div>
+        </div>
+
+        <br /><br />
+
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Product Name
+                        </th>
+                        <th>
+                            User
+                        </th>
+                        <th>
+                            Comment
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model)
+                    {
+                        <tr>
+                            <td width="25%">@obj.Product.Name</td>
+                            <td width="25%">@obj.CreatedBy.UserName</td>
+                            <td width="40%">@obj.Content</td>
+                            <td class="text-center">
+                                <div class="w-75 btn-group" role="group">
+                                    
+                                    <button class="btn mx-2" type="submit" asp-route-Id="@obj.Id" asp-action="DeletePost">
+                                            <i class="fas fa-trash-alt"></i>
+
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No comment exists.</p>
+        }
+
+    </div>
+</form>

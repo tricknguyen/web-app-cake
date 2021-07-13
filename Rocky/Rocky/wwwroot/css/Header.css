@@ -11,6 +11,8 @@
     text-align: left;
 }
 
+
+
 a {
     color: #fff;
     text-decoration: none;
@@ -138,7 +140,7 @@ a:-webkit-any-link {
 header.masthead {
     text-align: center;
     color: #fff;
-    background-image: url('/image/cake 2.jpg');
+    background-image: url('/image/wallpaper.png');
     background-repeat: no-repeat;
     background-attachment: scroll;
     background-position: center center;
@@ -146,7 +148,7 @@ header.masthead {
 }
 
 .masthead {
-    background: url(/image/product/wallpaper.png) !important;
+    background: url(/image/wallpaper.png) !important;
     background-repeat: no-repeat !important;
 }
 

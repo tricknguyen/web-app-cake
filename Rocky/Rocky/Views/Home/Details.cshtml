@@ -1,72 +1,218 @@
 ﻿@model Rocky_Models.ViewModel.DetailsVM
 
 @using Rocky_Utility
-<style>
-    #hoverr:hover{
-        background:#ffe4e1 !important;
-    }
-</style>
-<div class="">
-    <form method="post" style="padding-top:80px!important;">
-        <input asp-for="@Model.Product.Id" hidden /> <!--để dễ dàng truy cập vào details post-->
-        <div class="container backgroundWhite pt-4">
-            <div class="card" style="border:1px solid #000000; ">
-                <div class="card-header bg-dark text-light ml-0 row container" style="border-radius: 0px; background:#ffe4e1 !important;">
-                    <div class="col-12 col-md-6">
-                        <h1 class="text-white" style="color:crimson!important;">@(Model.Product.Name)</h1>
-                    </div>
-                    <div class="col-12 col-md-6 text-md-right">
-                        <h1 class="text-warning"> @((Model.Product.Price).ToString("c"))</h1><!--đổi sang tiền tệ-->
-                    </div>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+          crossorigin="anonymous" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          rel="stylesheet"
+          id="bootstrap-css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="/css/detail_cake.css" />
+    <script src="jquery-1.9.1.min.js"></script>
+</head>
+<body style="margin-top: 60px !important;">
+    <form method="post" enctype="multipart/form-data">
+        <input asp-for="@Model.Product.Id" hidden />
+        <div class="pd-wrap">
+            <div class="container">
+                <div class="heading-section">
+                    <h2>Product Details</h2>
                 </div>
-                <div class="card-body">
-                    <div class="container rounded p-2">
-                        <div class="row">
-                            <div class="col-12 col-lg-4 p-1 text-center">
-                                <img src="@WC.ImagePath@Model.Product.Image" width="100%" class="rounded" /> <!--lấy hình ảnh-->
-                            </div>
-                            <div class="col-12 col-lg-8">
-                                <div class="row pl-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="slider">
+                            <input type="radio" name="slide_switch" id="id1" />
+                            <label for="id1">
+                                <img src="/image/img6.jpg" width="100" />
+                            </label>
+                            <img src="/image/img6.jpg" />
 
-                                    <div class="col-12">
-                                        <span class="badge p-3 border text-dark" style="background-color:lavenderblush">@Model.Product.Category.Name</span>
-                                        <span class="badge p-3 border text-dark" style="background-color:azure">@Model.Product.ApplicationType.NameApp</span>
-                                        <h3 class="text-success"></h3>
+                            <!--Lets show the second image by default on page load-->
+                            <input type="radio"
+                                   name="slide_switch"
+                                   id="id2"
+                                   checked="checked" />
+                            <label for="id2">
+                                <img src="@WC.ImagePath@Model.Product.Image" width="100" />
+                            </label>
+                            <img src="@WC.ImagePath@Model.Product.Image" />
 
-                                        <p class="text-secondary">@Html.Raw(Model.Product.Description) </p><!--vì đã sử dụng summer note-> html.raw()-->
-                                    </div>
-                                
-                                    <div class="col-12">Sqft:</div>
-                                    <div class="col-12">
-                                       @if (Model.ExistsInCart)
-                                        {
-                                           <input asp-for="@Model.Product.TempSqFt" disabled class="form-control" />
-                                        }
-                                       else
-                                       {
-                                          <input asp-for="@Model.Product.TempSqFt" class="form-control" />
-                                       }
-                                          <span asp-validation-for="@Model.Product.TempSqFt" class="text-danger"></span>
-                                    </div>
-                                    
+                            <input type="radio" name="slide_switch" id="id3" />
+                            <label for="id3">
+                                <img src="/image/img3.jpg" width="100" />
+                            </label>
+                            <img src="/image/img3.jpg" />
+
+                            <input type="radio" name="slide_switch" id="id4" />
+                            <label for="id4">
+                                <img src="/image/img4.jpg" width="100" />
+                            </label>
+                            <img src="/image/img4.jpg" />
+
+                            <input type="radio" name="slide_switch" id="id5" />
+                            <label for="id5">
+                                <img src="/image/img5.jpg" width="100" />
+                            </label>
+                            <img src="/image/img5.jpg" />
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product-dtl">
+                            <div class="product-info2">
+                                <div class="product-name">
+                                    @(Model.Product.Name) <i class="far fa-heart" id="heart" data-id="@Model.Product.Id"></i>
+                                </div>
+                                <div class="product-name">
+                                    Type of cake: @(Model.Product.Category.Name)
+                                </div>
+
+                                <div class="product-price-discount">
+                                    <span>@((Model.Product.Price).ToString("c"))</span><span class="line-through">$29.00</span>
                                 </div>
                             </div>
+                            <p style="font-size: 14px !important;">
+                                @Html.Raw(Model.Product.Description)
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @if (Model.ExistsInCart)
+                                    {
+                                        <input asp-for="@Model.Product.TempSqFt"
+                                               for="quantity"
+                                               type="number"
+                                               name="qty"
+                                               id="number"
+                                               value="1" disabled />
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="@Model.Product.TempSqFt"
+                                               for="quantity"
+                                               type="number"
+                                               name="qty"
+                                               id="number"
+                                               value="1" />
+                                    }
+                                </div>
+                            </div>
+                            <div class="product-count">
+                                <a asp-action="Index" class="round-black-btn" style="color:white !important;">Back to List</a>
+                                @if (Model.ExistsInCart)
+                                {
+                                    <a asp-action="RemoveFromCart" type="submit" asp-route-id="@Model.Product.Id" class="round-black-btn" style="color:white !important;">Remove from Cart</a>
+
+                                }
+                                else
+                                {
+                                    <button asp-action="DetailsPost" type="submit" asp-route-id="@Model.Product.Id" class="round-black-btn" style="color:white !important;">Add to Cart</button>
+
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer bg-dark" style="background:#ffe4e1 !important;">
-                    <div class="row">
-                        <div class="col-12 col-md-6 pb-1 ">
-                            <a id="hoverr" asp-action="Index" class="btn btn-success btn-square form-control btn-lg" style="height:50px; background:white!important; color:crimson!important;">Back to List</a>
+
+                <div class="product-info-tabs">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active"
+                               id="description-tab"
+                               data-toggle="tab"
+                               href="#description"
+                               role="tab"
+                               aria-controls="description"
+                               aria-selected="true">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               id="review-tab"
+                               data-toggle="tab"
+                               href="#review"
+                               role="tab"
+                               aria-controls="review"
+                               aria-selected="false">Reviews </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active"
+                             id="description"
+                             role="tabpanel"
+                             aria-labelledby="description-tab">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                            enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                            nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                            sunt in culpa qui officia deserunt mollit anim id est laborum. Sed
+                            ut perspiciatis unde omnis iste natus error sit voluptatem
+                            accusantium doloremque laudantium, totam rem aperiam.
                         </div>
-                        <div class="col-12 col-md-6 ">
-                            @if (Model.ExistsInCart)
+                        <div class="tab-pane fade"
+                             id="review"
+                             role="tabpanel"
+                             aria-labelledby="review-tab">May
+                            <div class="review-heading">COMMENTS</div>
+                            <p class="mb-20">There are no comments yet.</p>
+                            <div class="be-comment-block">
+                                @{ var commentTotal = 0.0;}
+                                @foreach (var item in Model.CommentList)
+                                {
+                                    if (item.ProductID == Model.Product.Id)
+                                    {
+                                        commentTotal += 1;
+                                    }
+                                }
+                                    <h1 class="comments-title">Comments (@commentTotal)</h1>
+                                    @foreach (var item in Model.CommentList)
+                                    {
+                                        if (item.ProductID == Model.Product.Id)
+                                        {                                        
+                                            <div class="be-comment">
+                                                <div class="be-img-comment">
+                                                    <a href="blog-detail-2.html">
+                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment">
+                                                    </a>
+                                                </div>
+                                                <div class="be-comment-content">
+                                                    <span class="be-comment-name">
+                                                        <a href="blog-detail-2.html">@item.CreatedBy.UserName</a>
+                                                    </span>
+                                                    <p class="be-comment-text">
+                                                        @item.Content
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        }
+                                    }               
+                                </div>
+                            @if (User.IsInRole(WC.AdminRole) || User.IsInRole(WC.CustomerRole))
                             {
-                                <a id="hoverr" asp-action="RemoveFromCart" asp-route-id="@Model.Product.Id" class="btn btn-warning btn-square form-control btn-lg" style="height:50px; background:white!important; color:crimson!important;">Remove from Cart</a>
-                            }
-                            else
-                            {
-                                <button id="hoverr" type="submit" asp-action="DetailsPost" asp-route-id="@Model.Product.Id" class="btn btn-info form-control btn-lg" style="height:50px; background:white!important; color:crimson!important;">Add to Cart</button>
+
+                                <div class="form-group">
+                                    <label>Your comment</label>
+                                    
+                                    <input class="form-control" asp-for="@Model.Comment.Content" />
+                                    <span asp-validation-for="@Model.Comment.Content" class="text-danger"></span>
+                                </div>
+                                <button class="round-black-btn" type="submit" asp-action="CommentPost">Submit Comment</button>
+
                             }
                         </div>
                     </div>
@@ -74,7 +220,20 @@
             </div>
         </div>
     </form>
-</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="http://thecodeplayer.com/uploads/js/prefixfree.js"
+            type="text/javascript"></script>
+    <script src="/js/detail_cake.js"></script>
+</body>
+
+
+
+
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }

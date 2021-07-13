@@ -2,7 +2,7 @@
 @using React.Web.Mvc
 @using Rocky_Utility
 <div id="2" class="App">
-    <header class="masthead">
+    <header class="masthead" >
 
         <div class="container">
             <div class="intro-text">
@@ -10,7 +10,7 @@
                     Welcome To Our Bakery!
                 </div>
                 <div class="intro-heading text-uppercase">It's nice to meet you</div>
-                <a class="btn btn-primary btn-x1 text-uppercase js-scroll-trigger App" href="#services" id="as">Tell Me More</a>
+                <a class="btn btn-primary btn-x1 text-uppercase js-scroll-trigger App" asp-action="tellmemore" id="as">Tell Me More</a>
             </div>
         </div>
     </header>
@@ -21,103 +21,28 @@
             <div></div>
         </div>
         <div class="featured-products-center" style="background: mistyrose !important; ">
-            <acticle class="product">
+            @foreach (var item in Model.Products)
+            {
+                if (item.Love > 0)
+                {
+                    <acticle class="product">
 
-                <div class="img-container">
-                    <img src="/image/img1.jpg" alt="cake">
-                    <div class="price-top">
-                        <h6>$10</h6>
-                        <p>per one</p>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="row">
-                        <p class="col-sm">basic cupcake</p>
-                    </div>
+                        <div class="img-container">
+                            <img src="@WC.ImagePath@item.Image" alt="cake">
+                            <div class="price-top">
+                                <h6>$@item.Price</h6>
+                                <p>per one</p>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="row">
+                                <p class="col-sm">@item.Name</p>
+                            </div>
 
-                </div>
-            </acticle>
-            <acticle class="product">
-
-                <div class="img-container">
-                    <img src="/image/img8.jpg" alt="cake">
-                    <div class="price-top">
-                        <h6>$350</h6>
-                        <p>per one</p>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="row">
-                        <p class="col-sm">gato cake</p>
-                    </div>
-
-                </div>
-            </acticle>
-            <acticle class="product">
-
-                <div class="img-container">
-                    <img src="/image/img11.jpg" alt="cake">
-                    <div class="price-top">
-                        <h6>$10</h6>
-                        <p>per one</p>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="row">
-                        <p class="col-sm">bread</p>
-                    </div>
-
-                </div>
-            </acticle>
-            <acticle class="product">
-
-                <div class="img-container">
-                    <img src="/image/img12.jpg" alt="cake">
-                    <div class="price-top">
-                        <h6>$740</h6>
-                        <p>per one</p>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="row">
-                        <p class="col-sm">big daddy</p>
-                    </div>
-
-                </div>
-            </acticle>
-            <acticle class="product">
-
-
-                <div class="img-container">
-                    <img src="/image/img13.jpg" alt="cake">
-                    <div class="price-top">
-                        <h6>$650</h6>
-                        <p>per one</p>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="row">
-                        <p class="col-sm">the graduation box</p>
-                    </div>
-
-                </div>
-            </acticle>
-            <acticle class="product">
-
-                <div class="img-container">
-                    <img src="/image/img15.jpg" alt="cake">
-                    <div class="price-top">
-                        <h6>$100</h6>
-                        <p>per one</p>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="row">
-                        <p class="col-sm">doughnut</p>
-                    </div>
-
-                </div>
-            </acticle>
+                        </div>
+                    </acticle>
+                }
+            }
         </div>
     </section>
 
@@ -145,6 +70,8 @@
                 }
             </div>
         </div>
+       
+
     </section>
 
     <section class="page-section" id="services">
@@ -247,7 +174,8 @@
                         <p class="large text-muted">Studied at the university of information technology led by Ms. Nghi as a teacher.</p>
                     </div>
                 </div>
-
+            </div>
+        </div>
     </section>
 
     <section class="page-section" id="contact">
@@ -358,43 +286,5 @@
 
     </script>
 }
-@*<div class="container">
-        <div class="text-center">
-            <button class="btn btn-dark filter-button" data-filter="all">All</button>
-            @foreach (var obj in Model.Categories)
-            {
-                <button class="btn btn-outline-secondary filter-button" data-filter="@obj.Name.Replace(' ','_')">
-                    @obj.Name
-                </button>
-            }
-        </div>
-        <br />
-        <div class="row">
-            @foreach (var prod in Model.Products)
-            {
-                //display all product
-                <partial name="_IndividualProductCard" model="prod" />
-            }
-        </div>
-    </div>
-
-    @section Scripts{
-        <script>
-            $(document).ready(function () {
-                $(".filter-button").click(function () {
-                    var value = $(this).attr('data-filter');
-                    if (value == "all") {
-                        $('.filter').show('1000');
-                    }
-                    else {
-                        $(".filter").not('.' + value).hide('3000');
-                        $(".filter").filter('.' + value).show('3000');
-                    }
-                });
-            });
-
-        </script>
-    }
-*@
 
 

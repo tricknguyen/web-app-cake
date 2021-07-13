@@ -1,0 +1,44 @@
+﻿<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.2/chart.min.js" integrity="sha512-VCHVc5miKoln972iJPvkQrUYYq7XpxXzvqNfiul1H4aZDwGBGC0lq373KNleaB2LpnC2a/iNfE5zoRYmB4TRDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js" integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js" integrity="sha256-C6CB9UYIS9UJeqinPHWTHVqh/E1uhG5Twh+Y5qFQmYg=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <style>
+        #chart_container {
+            width: 1000px;
+            height: 500px;
+            border: 1px solid #ddd;
+            padding: 1px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<div id="chart_container" style="margin-top:100px !important; margin-left:300px !important">
+    <canvas id="bar_chart"></canvas>
+    <p style="margin-left:400px; margin-top:20px;">Chart: Interaction number of products</p>
+</div>
+<script>
+    var repArray = @Html.Raw(Json.Serialize(ViewBag.Interaction));
+    var age = @Html.Raw(Json.Serialize(ViewBag.NameProduct));
+    var ctx = $("#bar_chart");
+    var bacChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: age,
+            datasets: [{
+                label: "Interaction",
+                data: repArray,
+                backgroundColor: ["rgba(242,166,54,.5)"],
+                borderColor: ["rgb(242,166,54)", "rgb(145,65,72)", "rgb(74,25,92)"],
+                borderWidth:1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: { xAxes: [{ ticks: { beginAtZero: true } }] },
+            legend: { display: false }
+        },
+    });
+</script>,

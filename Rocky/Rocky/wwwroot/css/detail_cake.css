@@ -1,0 +1,398 @@
+﻿.pd-wrap {
+    padding: 40px 0;
+    color: crimson;
+    background-color: mistyrose;
+    font-family: "Poppins", sans-serif;
+}
+
+.heading-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.fa-heart{
+    color: crimson!important;
+}
+.sub-heading {
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    display: block;
+    font-weight: 600;
+    color: #2e9ca1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.heading-section h2 {
+    font-size: 32px;
+    font-weight: 500;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    font-family: "Poppins", sans-serif;
+}
+
+.user-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    min-width: 80px;
+    background-size: 100%;
+}
+
+.carousel-testimonial .item {
+    padding: 30px 10px;
+}
+
+.quote {
+    position: absolute;
+    top: -23px;
+    color: #2e9da1;
+    font-size: 27px;
+}
+
+.name {
+    margin-bottom: 0;
+    line-height: 14px;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.position {
+    color: #adadad;
+    font-size: 14px;
+}
+
+.product-thumb .item img {
+    height: 100px;
+}
+
+.product-name {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 22px;
+    margin-bottom: 4px;
+}
+
+.product-price-discount {
+    font-size: 22px;
+    font-weight: 400;
+    padding: 10px 0;
+    clear: both;
+}
+
+    .product-price-discount span.line-through {
+        text-decoration: line-through;
+        margin-left: 10px;
+        font-size: 14px;
+        vertical-align: middle;
+        color: #a5a5a5;
+    }
+
+.display-flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.product-info2 {
+    width: 100%;
+}
+
+.reviews-counter {
+    font-size: 13px;
+}
+
+    .reviews-counter span {
+        vertical-align: -2px;
+    }
+
+.product-name > i {
+    margin: 10px;
+}
+
+    .product-name > i:focus {
+        background-color: crimson;
+    }
+
+.product-dtl p {
+    font-size: 14px;
+    line-height: 24px;
+    color: #7a7a7a;
+}
+
+.product-dtl .form-control {
+    font-size: 15px;
+}
+
+.product-dtl label {
+    line-height: 16px;
+    font-size: 15px;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.round-black-btn {
+    border-radius: 4px;
+    background: crimson;
+    color: #fff;
+    padding: 7px 45px;
+    display: inline-block;
+    margin-top: 20px;
+    border: solid 2px crimson;
+    transition: all 0.5s ease-in-out 0s;
+}
+
+    .round-black-btn:hover,
+    .round-black-btn:focus {
+        background: transparent !important;
+        color: #fff !important;
+        color: crimson !important;
+        text-decoration: none !important;
+    }
+
+.product-info-tabs {
+    margin-top: 25px;
+}
+
+    .product-info-tabs .nav-tabs {
+        border-bottom: 2px solid crimson;
+    }
+
+        .product-info-tabs .nav-tabs .nav-item {
+            margin-bottom: 0;
+        }
+
+        .product-info-tabs .nav-tabs .nav-link {
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: crimson;
+        }
+
+        .product-info-tabs .nav-tabs .nav-item .nav-link:hover {
+            border: none;
+        }
+
+        .product-info-tabs .nav-tabs .nav-item.show .nav-link,
+        .product-info-tabs .nav-tabs .nav-link.active,
+        .product-info-tabs .nav-tabs .nav-link.active:hover {
+            border: none;
+            border-bottom: 2px solid #d8d8d8;
+            font-weight: bold;
+        }
+
+    .product-info-tabs .tab-content .tab-pane {
+        padding: 30px 20px;
+        font-size: 15px;
+        line-height: 24px;
+        color: #7a7a7a;
+    }
+
+.review-form .form-group {
+    clear: both;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.review-form .rate {
+    float: none;
+    display: inline-block;
+}
+
+.review-heading {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    color: #000;
+}
+
+.review-form .form-control {
+    font-size: 14px;
+}
+
+.review-form input.form-control {
+    height: 40px;
+}
+
+.review-form textarea.form-control {
+    resize: none;
+}
+
+.review-form .round-black-btn {
+    text-transform: uppercase;
+    cursor: pointer;
+}
+/*  */
+
+.slider {
+    width: 500px;
+    position: relative;
+    /*Instead of height we will use padding*/
+    padding-top: 280px; /*That helps bring the labels down*/
+    /*Lets add a shadow*/
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.75);
+}
+
+    /*Last thing remaining is to add transitions*/
+    .slider > img {
+        width: 500px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: all 0.5s;
+    }
+
+    .slider input[name="slide_switch"] {
+        display: none;
+    }
+
+    .slider label {
+        /*Lets add some spacing for the thumbnails*/
+        margin: 18px 0 0 18px;
+        border: 3px solid #999;
+        float: left;
+        cursor: pointer;
+        transition: all 0.5s;
+        width: 80px;
+        /*Default style = low opacity*/
+        opacity: 0.6;
+    }
+
+        .slider label img {
+            display: block;
+            width: 74px;
+        }
+
+    /*Time to add the click effects*/
+    .slider input[name="slide_switch"]:checked + label {
+        border-color: #666;
+        opacity: 1;
+    }
+    /*Clicking any thumbnail now should change its opacity(style)*/
+    /*Time to work on the main images*/
+    .slider input[name="slide_switch"] ~ img {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    /*That hides all main images at a 110% size
+On click the images will be displayed at normal size to complete the effect
+*/
+    .slider input[name="slide_switch"]:checked + label + img {
+        opacity: 1;
+        transform: scale(1);
+    }
+/*Clicking on any thumbnail now should activate the image related to it*/
+#number {
+    height: 35px;
+    padding: 10px;
+    border: none;
+    width: 360px;
+}
+/*We are done :)*/
+@media screen and (max-width: 376px) {
+    .slider {
+        width: 345px;
+        padding-top: 190px;
+    }
+
+        .slider > img {
+            width: 345px;
+        }
+
+        .slider label {
+            width: 50px;
+        }
+
+            .slider label img {
+                width: 45px;
+            }
+
+    #number {
+        width: 200px;
+    }
+}
+
+
+
+/* comment antd */
+.be-comment-block {
+    margin-bottom: 10px !important;
+    border: 1px solid #edeff2;
+    border-radius: 2px;
+    padding: 20px 20px;
+    border: 1px solid #ffffff;
+}
+
+.comments-title {
+    font-size: 16px;
+    color: #262626;
+    margin-bottom: 15px;
+    font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-img-comment {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-bottom: 15px;
+}
+
+.be-ava-comment {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.be-comment-content {
+    margin-left: 80px;
+}
+
+    .be-comment-content span {
+        display: inline-block;
+        width: 49%;
+        margin-bottom: 15px;
+    }
+
+.be-comment-name {
+    font-size: 13px;
+    font-family: 'Conv_helveticaneuecyr-bold';
+}
+
+.be-comment-content a {
+    color: #383b43;
+}
+
+.be-comment-content span {
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 15px;
+}
+
+.be-comment-time {
+    text-align: right;
+}
+
+.be-comment-time {
+    font-size: 11px;
+    color: #b4b7c1;
+}
+
+.be-comment-text {
+    font-size: 13px;
+    line-height: 18px;
+    color: #7a8192;
+    display: block;
+    background: #f6f6f7;
+    border: 1px solid #edeff2;
+    padding: 15px 20px 20px 20px;
+}
+
+/* comment antd */

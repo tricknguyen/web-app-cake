@@ -1,0 +1,73 @@
+﻿@model Rocky_Models.Coupon
+
+
+<form method="post" asp-action="DeletePost" style="margin-top:80px;">
+    <input asp-for="Id" hidden />
+    <div class="border p-3 bg-white">
+
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Delete Category</h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="CouponCode"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="CouponCode" disabled class="form-control" />
+
+
+                    </div>
+
+                </div>
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="Discount"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Discount" disabled class="form-control" />
+
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="MaxDiscount"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="MaxDiscount" disabled class="form-control" />
+
+                    </div>
+                </div>
+                <div class="form-group row py-2">
+                    <div class="col-4">
+                        <label asp-for="ExpirationDate"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="ExpirationDate" disabled class="form-control" />
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row py-2">
+                        <div class="col">
+                            <input type="submit" class="btn btn-danger w-100" value="Delete" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-danger w-100" style="color:white!important;"><i class="fas fa-sign-out-alt"></i>Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

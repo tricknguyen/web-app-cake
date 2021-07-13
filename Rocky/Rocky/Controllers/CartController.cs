@@ -30,13 +30,14 @@ namespace Rocky.Controllers
         private readonly IInquiryHeaderRepository _inqHRepo;
         private readonly IOrderDetailRepository _orderDRepo;
         private readonly IOrderHeaderRepository _orderHRepo;
+        private readonly ICouponRepository _couponRepo;
         private readonly IBrainTreeGate _brain;
         [BindProperty]
         public ProductUserVM ProductUserVM { get; set; }
         public CartController(ApplicationDbContext db, 
             IProductRepository prodRepo, IApplicationUserRepository userRepo, IInquiryDetailRepository inqDRepo, 
             IInquiryHeaderRepository inqHRepo, IOrderDetailRepository orderDRepo,
-            IOrderHeaderRepository orderHRepo, IBrainTreeGate brain)
+            IOrderHeaderRepository orderHRepo, IBrainTreeGate brain, ICouponRepository couponRepo)
         {
             _userRepo = userRepo;
             _prodRepo = prodRepo;
@@ -44,11 +45,12 @@ namespace Rocky.Controllers
             _inqHRepo = inqHRepo;
             _orderDRepo = orderDRepo;
             _orderHRepo = orderHRepo;
+            _couponRepo = couponRepo;
             _brain = brain;
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(double? total)
         {
             List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
             //lấy dữ liệu từ session
@@ -61,78 +63,71 @@ namespace Rocky.Controllers
             //đã truy xuất được tất cả dữ liệu trong session ra prodIncart
             //IEnumerable<Product> prodList = _db.Product.Where(u => prodInCart.Contains(u.Id));
             IEnumerable<Product> prodListTemp = _prodRepo.GetAll(u => prodInCart.Contains(u.Id)); //lấy tất cả các id phù hợp với prodincart
-            IList<Product> prodList = new List<Product>();
-
+            //IList<Product> prodList = new List<Product>();
+            
+            CartVM cartVM = new CartVM();
+            
+           
             foreach(var cartObj in shoppingCartList)
             {
                 Product prodTemp = prodListTemp.FirstOrDefault(u => u.Id == cartObj.ProductId); //truy xuất từng product trong session
                 prodTemp.TempSqFt = cartObj.SqFt;
-                prodList.Add(prodTemp);
-                
+              // prodList.Add(prodTemp);
+                 cartVM.ProdList.Add(prodTemp);
+               
             }
-            return View(prodList);
-            
+
+            List<string> couponCode = new List<string>();
+            List<int> disCount = new List<int>();
+            List<Coupon> couponTemp = _couponRepo.GetAll().ToList();
+            foreach(var item in couponTemp)
+            {
+                couponCode.Add(item.CouponCode);
+                disCount.Add(item.Discount);
+            }
+
+            ViewBag.CouponCode = couponCode;
+            ViewBag.Discount = disCount;
+                        
+            return View(cartVM);           
         }
+        
+       
 
         //GET-POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Index")]
-        public IActionResult IndexPost(List<Product> ProdList)
+        //public IActionResult IndexPost(List<Product> ProdList)
+        //{
+        public IActionResult IndexPost(CartVM CartVM)
         {
             List<ShoppingCart> shoppingCartLists = new List<ShoppingCart>();
-            foreach (Product prod in ProdList)
+            foreach (Product prod in CartVM.ProdList)
             {
                 shoppingCartLists.Add(new ShoppingCart { ProductId = prod.Id, SqFt = prod.TempSqFt });
             }
             HttpContext.Session.Set(WC.SessionCart, shoppingCartLists);
-            return RedirectToAction(nameof(Summary));
+
+            return RedirectToAction("Summary", new { total = CartVM.Total });
         }
 
-        public IActionResult Summary()
+        public IActionResult Summary(double total)
         {
-            ApplicationUser applicationUser;
-            //if(User.IsInRole(WC.AdminRole))
-            //{
-                //if (HttpContext.Session.Get<int>(WC.SessionInquiryId) != 0)    //kiểm tra xem trong session có inquiry nào k dựa trên InquiryID?
-                //{
-                //    //cart đã được loading bằng việc sử dụng inquiry
-                //    InquiryHeader inquiryHeader = _inqHRepo.FirstOrDefault(u => u.Id == HttpContext.Session.Get<int>(WC.SessionInquiryId));
-                //    //tìm inquiry có trong session dựa vào InquiryId
-                //    applicationUser = new ApplicationUser()
-                //    {
-                //        Email = inquiryHeader.Email,
-                //        FullName = inquiryHeader.FullName,
-                //        PhoneNumber = inquiryHeader.PhoneNumber
-                //    };
-                //}
-                //else
-                //{
-                    applicationUser = new ApplicationUser();
-
-                //}
-                //tao token
-                var gateway = _brain.GetGateway();
-                var clientToken = gateway.ClientToken.Generate(); 
-                //token dữ liệu tạm thời nên dùng viewbag
-                ViewBag.ClientToken = clientToken;//lưu trữ client token trong ViewBag
-               
-
-            //}
-            //else
-            //{   
-                //tìm id của user để lấy dl
-                var claimsIdentity = (ClaimsIdentity)User.Identity;
-                var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-                applicationUser = _userRepo.FirstOrDefault(u => u.Id == claim.Value);
-            //}
-
-
-            //lấy id của ng dùng đã đăng ký
-           /* var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);*/ //đây là đối tượng lấy dữ liệu, nếu user chưa loggin thì claim sẽ k có
-                                                                             //var userId = User.FindFirstValue(ClaimTypes.Name); C2 này cũng dùng đc để lấy dl userid
-
+            ApplicationUser applicationUser;         
+            applicationUser = new ApplicationUser();
+          
+            //tao token
+            var gateway = _brain.GetGateway();
+            var clientToken = gateway.ClientToken.Generate(); 
+            //token dữ liệu tạm thời nên dùng viewbag
+            ViewBag.ClientToken = clientToken;//lưu trữ client token trong ViewBag               
+          
+            //tìm id của user để lấy dl
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            applicationUser = _userRepo.FirstOrDefault(u => u.Id == claim.Value);
+           
             List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
             //lấy dữ liệu từ session
             if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
@@ -149,6 +144,7 @@ namespace Rocky.Controllers
             {
                 //ApplicationUser = _db.ApplicationUser.FirstOrDefault(u => u.Id == claim.Value),
                 ApplicationUser = applicationUser,
+                orderTotal = total
             };
             foreach(var cartObj in shoppingCartList)
             {
@@ -156,11 +152,7 @@ namespace Rocky.Controllers
                 prodTemp.TempSqFt = cartObj.SqFt;
                 ProductUserVM.ProductList.Add(prodTemp);
             }
-
-      
-
-            
-
+                 
             return View(ProductUserVM);
         }
         [HttpPost]
@@ -171,18 +163,11 @@ namespace Rocky.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-            //if(User.IsInRole(WC.AdminRole))
-            //{
-                //tao 1 order
-              /*  var orderTotal = 0.0;
-                foreach(Product prod in ProductUserVM.ProductList)
-                {
-                    orderTotal += prod.Price * prod.TempSqFt;
-                } */ //ta có thể sử dụng hàm SUM để tính luôn cũng được
                 OrderHeader orderHeader = new OrderHeader()
                 {
                     CreatedByUserId = claim.Value,
-                    FinalOrderTotal = ProductUserVM.ProductList.Sum(x=>x.Price*x.TempSqFt),
+                    //FinalOrderTotal = ProductUserVM.ProductList.Sum(x=>x.Price*x.TempSqFt),
+                    FinalOrderTotal = ProductUserVM.orderTotal,
                     City = ProductUserVM.ApplicationUser.City,
                     Address = ProductUserVM.ApplicationUser.Address,
                     OrderDate = DateTime.Now,
@@ -233,41 +218,8 @@ namespace Rocky.Controllers
                 }
                 _orderHRepo.Save();
 
-                return RedirectToAction(nameof(InquiryConfirmation), new { id = orderHeader.Id });
-            //}
-            //else
-            //{
-            //    // //tao inquiry
-            //    //lấy thông tin user
-
-            //    InquiryHeader inquiryHeader = new InquiryHeader()
-            //    {
-            //        ApplicationUserId = claim.Value,
-            //        FullName = ProductUserVM.ApplicationUser.FullName,
-            //        Email = ProductUserVM.ApplicationUser.Email,
-            //        PhoneNumber = ProductUserVM.ApplicationUser.PhoneNumber,    
-            //        InquiryDate = DateTime.Now
-            //    };
-
-            //    _inqHRepo.Add(inquiryHeader);
-            //    _inqHRepo.Save();
-
-            //    foreach (var prod in ProductUserVM.ProductList)
-            //    {
-            //        InquiryDetail inquiryDetail = new InquiryDetail()
-            //        {
-            //            InquiryHeaderId = inquiryHeader.Id,
-            //            ProductId = prod.Id
-            //        };
-            //        _inqDRepo.Add(inquiryDetail);
-            //    }
-            //    _inqDRepo.Save();
-            //}
-            //return RedirectToAction(nameof(InquiryConfirmation));
-
-
-
-
+            //  return RedirectToAction(nameof(InquiryConfirmation), new { id = orderHeader.Id });
+            return RedirectToAction("MyOrder", "Order");
         }
         public IActionResult InquiryConfirmation(int id=0)
         {

@@ -92,7 +92,7 @@
                                         <span class="text-info">Summary:</span>
                                     </h4>
                                     <ul class="list-group mb-3">
-                                        @{ var orderTotal = 0.0;}
+                                     
                                         @for (int i = 0; i < Model.ProductList.Count(); i++)
                                         {
 
@@ -103,41 +103,41 @@
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <div>
                                                     <h6 class="my-0">@Model.ProductList[i].Name</h6>
-                                                    @*@if (User.IsInRole(Rocky_Utility.WC.AdminRole))
-                                                    {*@
-                                                        <small class="text-muted">Sqft: @Model.ProductList[i].TempSqFt</small>
-                                                    @*}
-                                                    else
+
+                                                    <small class="text-muted">Sqft: @Model.ProductList[i].TempSqFt</small>
+                                                    @{ var x = (Model.ProductList[i].Price * Model.ProductList[i].TempSqFt);}
+
+                                                    @if ((Model.ProductList[i].Price * Model.ProductList[i].TempSqFt) > Model.orderTotal)
                                                     {
-                                                        <small class="text-muted">Price per Sqft: $@Model.ProductList[i].Price</small>
-                                                    }*@
+                                                        <br />
+                                                        <small class="text-muted">Discount: $@(x - Model.orderTotal)</small>
+                                                    }
+
                                                 </div>
-                                                @*@if (User.IsInRole(Rocky_Utility.WC.AdminRole))
-                                                {*@
+                                           
                                                     <span class="text-muted">@(Model.ProductList[i].Price * Model.ProductList[i].TempSqFt)</span>
-                                                @*}*@
+                                                    
 
                                             </li>
-                                            orderTotal += Model.ProductList[i].Price * Model.ProductList[i].TempSqFt;
+                                           
                                         }
-                                        @*@if (User.IsInRole(Rocky_Utility.WC.AdminRole))
-                                        {*@
+                                      
                                             <li class="list-group-item d-flex justify-content-between bg-light">
                                                 <small class="text-info">Total (USD)</small>
-                                                <strong class="text-info">@orderTotal</strong>
+                                                <strong class="text-info">@Model.orderTotal</strong>
+                                                <input asp-for="@Model.orderTotal" type="hidden" />
                                             </li>
-                                        @*}*@
+                                   
                                     </ul>
                                 </div>
-                                @*@if (User.IsInRole(Rocky_Utility.WC.AdminRole))
-                                {*@
+                                
                                     <div class="col-12">
                                         <div id="container">
                                             <div id="dropin-container"></div>
                                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                                         </div>
                                     </div>
-                                @*}*@
+                               
                             </div>
                         </div>
                     </div>
@@ -145,16 +145,9 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12 col-md-5 offset-md-7">
-                            <!-- <button type="submit" class="btn btn-primary form-control" onclick="return decor()">Submit Inquiry</button>
-    -->
-                            @if (User.IsInRole(Rocky_Utility.WC.AdminRole))
-                            {
-                                <button class="btn btn-success form-control" onclick="return validateInput()" id="submit-button">Submit Order</button>
-                            }
-                            else
-                            {
-                                <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control">Submit Inquiry</button>
-                            }
+
+                                <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control" style="height:50px !important; background-color:#f99a9a !important; color:white!important;">Buy</button>
+                            
                         </div>
                     </div>
                 </div>

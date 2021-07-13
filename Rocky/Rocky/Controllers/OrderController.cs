@@ -10,25 +10,32 @@ using Rocky_Utility.BrainTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Rocky.Controllers
-{
+{   
+    [Authorize]
     public class OrderController : Controller
     {
 
         private readonly IOrderDetailRepository _orderDRepo;
         private readonly IOrderHeaderRepository _orderHRepo;
         private readonly IBrainTreeGate _brain;
+        private readonly IApplicationUserRepository _userRepo;
+        private readonly ICouponRepository _couponRepo;
         [BindProperty]
         public OrderVM OrderVM { get; set; }
         public OrderController(IOrderDetailRepository orderDRepo,
-            IOrderHeaderRepository orderHRepo, IBrainTreeGate brain)
+            IOrderHeaderRepository orderHRepo, IBrainTreeGate brain,
+            IApplicationUserRepository userRepo, ICouponRepository couponRepo)
         {
      
             _orderDRepo = orderDRepo;
             _orderHRepo = orderHRepo;
             _brain = brain;
+            _userRepo = userRepo;
+            _couponRepo = couponRepo;
         }
         public IActionResult Index(string searchName=null, string searchEmail=null, string searchPhone=null, string Status=null)
         {
@@ -130,6 +137,51 @@ namespace Rocky.Controllers
             TempData[WC.Sucess] = "Order Details Updated Successfully";
             return RedirectToAction("Detail", "Order", new { id = orderHeaderFromDb.Id });
             //return lại action Detail Controller Order
+        }
+
+        public IActionResult MyOrder()
+        {
+            MyorderVM myorder = new MyorderVM();
+
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).ToString();
+
+            IEnumerable<OrderHeader> orderHList = _orderHRepo.GetAll(u => claim.Contains(u.CreatedByUserId));
+            // IEnumerable<OrderDetail> orderDList = _orderDRepo.GetAll(u => orderHList.)
+            // OrderDetail = _orderDRepo.GetAll(o => o.OrderHeaderId == id, includeProperties: "Product")
+            myorder.OrderHList = orderHList.ToList();
+
+            List<OrderDetail> temp = new List<OrderDetail>();
+            foreach(var item in myorder.OrderHList)
+            {
+                temp = _orderDRepo.GetAll(o => o.OrderHeaderId == item.Id, includeProperties: "Product").ToList();
+                myorder.OrderDList.AddRange(temp);
+
+            }
+
+            double money = 0;
+            myorder.ApplicationUser.Id = claim;
+            foreach(var item in myorder.OrderHList)
+            {
+                money += item.FinalOrderTotal;
+            }
+            if(money>=10000)
+            {
+                myorder.ApplicationUser.Rank = 1;
+            }
+            else
+            {
+                if (money >= 5000)
+                    myorder.ApplicationUser.Rank = 2;
+                else
+                {
+                    myorder.ApplicationUser.Rank = 3;
+                }
+            }
+            Coupon coupon = _couponRepo.FirstOrDefault(u => u.Id == 1);
+            ViewBag.Rank = myorder.ApplicationUser.Rank;
+            ViewBag.Code = coupon.CouponCode;
+            return View(myorder);
         }
     }
 }

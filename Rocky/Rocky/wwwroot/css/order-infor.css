@@ -1,0 +1,449 @@
+﻿/* order-info */
+body {
+    background: mistyrose;
+    color: #333;
+    font-family: "Raleway";
+    height: 100%;
+}
+
+.tabs {
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    background: white;
+    padding: 40px;
+    padding-bottom: 50px;
+    width: 90%;
+    height: auto;
+    border-radius: 5px;
+    min-width: 240px;
+}
+
+    .tabs input[name="tab-control"] {
+        display: none;
+    }
+
+    .tabs .content section h2,
+    .tabs ul li label {
+        font-family: "Montserrat";
+        font-weight: bold;
+        font-size: 18px;
+        color: crimson;
+    }
+
+    .tabs ul {
+        list-style-type: none;
+        padding-left: 0;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-wrap: wrap;
+    }
+
+        .tabs ul li {
+            box-sizing: border-box;
+            flex: 1;
+            width: 25%;
+            padding: 0 10px;
+            text-align: center;
+        }
+
+            .tabs ul li label {
+                transition: all 0.3s ease-in-out;
+                color: #929daf;
+                padding: 5px auto;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                white-space: nowrap;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+                .tabs ul li label br {
+                    display: none;
+                }
+
+                .tabs ul li label i {
+                    fill: #929daf;
+                    height: 1.2em;
+                    vertical-align: bottom;
+                    margin-right: 0.2em;
+                    transition: all 0.2s ease-in-out;
+                }
+
+                .tabs ul li label:hover,
+                .tabs ul li label:focus,
+                .tabs ul li label:active {
+                    outline: 0;
+                    color: rgba(220, 20, 60, 0.925);
+                }
+
+                    .tabs ul li label:hover i,
+                    .tabs ul li label:focus i,
+                    .tabs ul li label:active i {
+                        fill: #bec5cf;
+                    }
+
+    .tabs .slider-order-infor {
+        position: relative;
+        width: 25%;
+        transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
+    }
+
+        .tabs .slider-order-infor .indicator {
+            position: relative;
+            width: 50px;
+            max-width: 100%;
+            margin: 0 auto;
+            height: 4px;
+            background: crimson;
+            border-radius: 1px;
+        }
+
+    .tabs .content {
+        margin-top: 30px;
+    }
+
+        .tabs .content section {
+            display: none;
+            -webkit-animation-name: content;
+            animation-name: content;
+            -webkit-animation-direction: normal;
+            animation-direction: normal;
+            -webkit-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+            -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+            -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+            line-height: 1.4;
+        }
+
+            .tabs .content section h2 {
+                color: crimson;
+                display: none;
+            }
+
+                .tabs .content section h2::after {
+                    content: "";
+                    position: relative;
+                    display: block;
+                    width: 30px;
+                    height: 3px;
+                    background: crimson;
+                    margin-top: 5px;
+                    left: 1px;
+                }
+
+    .tabs
+    input[name="tab-control"]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label {
+        cursor: default;
+        color: crimson;
+    }
+
+        .tabs
+        input[name="tab-control"]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label
+        i {
+            fill: crimson;
+        }
+
+@media screen and (max-width: 600px) {
+    .tabs
+    input[name="tab-control"]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.tabs input[name="tab-control"]:nth-of-type(1):checked ~ .slider-order-infor {
+    transform: translateX(0%);
+}
+
+.tabs
+input[name="tab-control"]:nth-of-type(1):checked ~ .content > section:nth-child(1) {
+    display: block;
+}
+
+.tabs
+input[name="tab-control"]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label {
+    cursor: default;
+    color: crimson;
+}
+
+    .tabs
+    input[name="tab-control"]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label
+    i {
+        fill: crimson;
+    }
+
+@media screen and (max-width: 600px) {
+    .tabs
+    input[name="tab-control"]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.tabs input[name="tab-control"]:nth-of-type(2):checked ~ .slider-order-infor {
+    transform: translateX(100%);
+}
+
+.tabs
+input[name="tab-control"]:nth-of-type(2):checked ~ .content > section:nth-child(2) {
+    display: block;
+}
+
+.tabs
+input[name="tab-control"]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label {
+    cursor: default;
+    color: crimson;
+}
+
+    .tabs
+    input[name="tab-control"]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label
+    i {
+        fill: crimson;
+    }
+
+@media screen and (max-width: 600px) {
+    .tabs
+    input[name="tab-control"]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.tabs input[name="tab-control"]:nth-of-type(3):checked ~ .slider-order-infor {
+    transform: translateX(200%);
+}
+
+.tabs
+input[name="tab-control"]:nth-of-type(3):checked ~ .content > section:nth-child(3) {
+    display: block;
+}
+
+.tabs
+input[name="tab-control"]:nth-of-type(4):checked ~ ul > li:nth-child(4) > label {
+    cursor: default;
+    color: crimson;
+}
+
+    .tabs
+    input[name="tab-control"]:nth-of-type(4):checked ~ ul > li:nth-child(4) > label
+    i {
+        fill: crimson;
+    }
+
+@media screen and (max-width: 600px) {
+    .tabs
+    input[name="tab-control"]:nth-of-type(4):checked ~ ul > li:nth-child(4) > label {
+        background: rgba(0, 0, 0, 0.08);
+    }
+}
+
+.tabs input[name="tab-control"]:nth-of-type(4):checked ~ .slider-order-infor {
+    transform: translateX(300%);
+}
+
+.tabs
+input[name="tab-control"]:nth-of-type(4):checked ~ .content > section:nth-child(4) {
+    display: block;
+}
+
+@-webkit-keyframes content {
+    from {
+        opacity: 0;
+        transform: translateY(5%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@keyframes content {
+    from {
+        opacity: 0;
+        transform: translateY(5%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .tabs ul li label {
+        white-space: initial;
+    }
+
+        .tabs ul li label br {
+            display: initial;
+        }
+
+        .tabs ul li label i {
+            height: 1.5em;
+        }
+}
+
+@media screen and (max-width: 600px) {
+    .tabs ul li label {
+        border-radius: 5px;
+        padding-top: 10px;
+    }
+
+        .tabs ul li label span {
+            display: none;
+        }
+
+    .tabs .slider-order-infor {
+        display: none;
+    }
+
+    .tabs .content {
+        margin-top: 20px;
+    }
+
+        .tabs .content section h2 {
+            display: block;
+        }
+}
+/* end of order-info */
+/* card-order-infor-order-infor in order-info */
+
+.card-order-infor {
+    border: 1px solid crimson;
+    padding: 10px 0 10px 0;
+    margin-bottom: 20px;
+}
+
+    .card-order-infor img {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px 0 0 5px;
+    }
+
+.card-order-infor-child {
+    background-color: #fff;
+    position: relative;
+    display: grid;
+    grid-template-columns: 200px auto;
+    border-radius: 5px;
+    border-bottom: 1px dashed crimson;
+    padding-bottom: 20px;
+    margin: 20px;
+}
+
+.card-order-infor > svg {
+    padding-top: 40px;
+    width: 200px;
+    height: 200px;
+    margin: 0 0 0 44%;
+}
+
+.card-order-infor > p {
+    text-align: center;
+    color: crimson;
+    font-size: 50px;
+    text-transform: uppercase;
+}
+
+.card-order-infor__text {
+    padding-left: 20px;
+}
+
+.card-order-infor__text__detail {
+    display: grid;
+    grid-template-columns: auto 200px;
+}
+
+.card-order-infor__text__total {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.card-order-infor__text h1 {
+    color: crimson;
+    font-weight: 400;
+    margin: 0;
+    font-size: 28px;
+}
+
+.card-order-infor h4 {
+    text-align: right;
+    text-transform: uppercase;
+    color: rgb(206 14 14 / 80%);
+    font-size: 18px;
+    padding-right: 20px;
+    margin: 10px;
+    font-style: italic;
+}
+
+.card-order-infor h6 {
+    text-align: right;
+    text-transform: uppercase;
+    color: crimson;
+    font-size: 24px;
+    padding-right: 20px;
+    margin: 10px;
+}
+
+.card-order-infor__text p {
+    margin: 0;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 376px) {
+    .card-order-infor-child {
+        grid-template-columns: none;
+        grid-template-rows: 200px auto;
+    }
+
+    .card-order-infor img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-order-infor h4 {
+        padding: 10px;
+    }
+
+    .card-order-infor h6 {
+        padding: 10px;
+    }
+
+    .card-order-infor__text__total {
+        margin-top: auto;
+    }
+
+    .card-order-infor__text__detail {
+        display: flex;
+    }
+
+    .card-order-infor__text {
+        padding-left: 10px;
+    }
+
+    .tabs {
+        padding: 10px;
+    }
+
+    .card-order-infor > svg {
+        padding-top: 20px;
+        width: 100px;
+        height: 100px;
+        margin: 0 0 0 35%;
+    }
+
+    .card-order-infor > p {
+        font-size: 20px;
+    }
+}
+/* end of order infor */

@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@if (SignInManager.IsSignedIn(User))
+{
+       
+        <!--button-->
+        <div id="chat-circle" class="btn btn-raised">
+            <div id="chat-overlay"></div>
+            <span class="badge">1+</span>
+            <i class="far fa-comment-dots"></i>
+        </div>
+
+        <!--chat-bot-->
+        <div class="chat-box">
+            <div class="chat-box-body">
+                <!--welcome message-->
+                <div class="chat-box-welcome__header">
+                    <div class="chat-box__header-text">
+                        <p3 class="chat-box-welcome__company-name">@UserManager.GetUserName(User)</p3>
+                        <span class="chat-box-toggle"><i class="far fa-share-square"></i></span>
+                    </div>
+
+                    <div id="chat-box-welcome__ava">
+                        <img src="~/image/logo-Bakery-01.png" width="100px" height="100px"></img>
+                    </div>
+                    <div class="chat-box-welcome__welcome-text">
+                        <p>Hi! I'm Admin, what can I assist you with?</p>
+                    </div>
+                </div>
+
+                <!--chat-bot after welcome was toggled-->
+                <div id="chat-box__wraper">
+                    <div class="chat-box-header">
+                        @UserManager.GetUserName(User)
+                        <span class="chat-box-toggle"><i class="far fa-share-square"></i></span>
+                    </div>
+
+                    <div class="chat-box-overlay"></div>
+                    <div class="chat-logs" style="background-color: mistyrose!important;">
+                        <div id="cm-msg-0" class="chat-msg bot">
+                            <span class="msg-avatar">
+                                <i class="fas fa-store" style="color: white !important; font-size:23px!important; margin-left:0.6px!important;"></i>
+                            </span>
+                            <div class="cm-msg-text" id="msg-text">
+                                Hi! I'm Admin, what can I assist you with?
+                            </div>
+                            @*<div class="cm-msg-text-rep" id="msg-text-rep">
+                                        Hi! I'm User
+                                </div>*@
+
+                            <div class="typing">
+                                <div class="bubble">
+                                    <div class="ellipsis one"></div>
+                                    <div class="ellipsis two"></div>
+                                    <div class="ellipsis three"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="text-center"><p>loader 1</p><div class="loader1"></div></div>-->
+                        <div class="spin-container">
+                            <div class="spiner">
+                                <div aria-hidden="true"></div>
+
+                                <div aria-hidden="true"></div>
+                                <div aria-hidden="true"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--chat-log-->
+                </div>
+            </div>
+            <div class="chat-input-box" style="background-color: mistyrose!important;">
+                <div class="chat-input__form">
+                        <input
+                           class="chat-input__text"
+                           id="chat-input__text"
+                           placeholder="Type a message..." />
+         
+                    @*<input type="button" class="chat-submit" id="chat-submit" value="Send"/>*@
+                    <button class="chat-submit" id="chat-submit" >
+                        <i class="far fa-paper-plane"></i>
+                    </button>
+                </div>
+                <p6 class="chat-box__sign">Bakey Shop Website</p6>
+            </div>
+        </div>
+        
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/ConnectHubs.js"></script>
+    <script src="~/js/chatbox.js"></script>
+
+}
+

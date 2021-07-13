@@ -1,6 +1,6 @@
 ﻿@model Rocky_Models.ViewModel.OrderVM
 
-<form method="post">
+<form method="post" style="margin-top:65px !important;">
     <input asp-for="OrderHeader.Id" hidden />
     <br />
     <div class="backgroundWhite container">
@@ -160,7 +160,7 @@
                             {
                                 <input type="submit" value="Ship Order"
                                        formmethod="post" asp-action="ShipOrder"
-                                       class="btn btn-primary form-control" />
+                                       class="btn btn-primary form-control" style="color: crimson!important; background-color: antiquewhite!important; margin-bottom:5px!important; padding-top:5px!important;" />
                             }
                             @if (Model.OrderHeader.OrderStatus != Rocky_Utility.WC.StatusRefunded
                                && Model.OrderHeader.OrderStatus != Rocky_Utility.WC.StatusCancelled)

@@ -20,46 +20,26 @@ namespace Rocky.Controllers
     public class ProductController : Controller
     {
         private readonly IProductRepository _proRepo;
+        private readonly IOrderDetailRepository _orderDRepo;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public ProductController(IProductRepository proRepo, IWebHostEnvironment webHostEnvironment)
+        public ProductController(IProductRepository proRepo, IWebHostEnvironment webHostEnvironment, IOrderDetailRepository orderDRepo)
         {
             _proRepo = proRepo;
             _webHostEnvironment = webHostEnvironment;
+            _orderDRepo = orderDRepo;
         }
 
         public IActionResult Index()
         {
             IEnumerable<Product> objList = _proRepo.GetAll(includeProperties:"Category,ApplicationType");
-            
-
-            /*foreach (var obj in objList)
-            {
-                obj.Category = _db.Category.FirstOrDefault(u => u.Id == obj.CategoryID); //load category model lên product dựa trên điều kiện
-                //nếu nó truy xuất 10 record nó sẽ lấy record đầu tiên để chỉ định cho category object 
-                obj.ApplicationType = _db.ApplicationType.FirstOrDefault(u => u.Id == obj.ApplicationTypeID);
-                
-            };*/
-            
-
             return View(objList);
         }
 
         //GET-UPSERT
-        //phân biệt request update or create, update thì sẽ pass vào 1 cái id create thì ngc lại
+      
         public IActionResult Upsert(int? id)
         {
-            /*IEnumerable<SelectListItem> CategoryDropDown = _db.Category.Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            }) ; 
-
-            //  ViewBag.CategoryDropDown = CategoryDropDown; //id tạm thời được chuyển từ controller -> view
-            ViewData["CategoryDropDown"] = CategoryDropDown;*/
-
-            //Product product = new Product();
-
-            //sử dụng ViewModel
+          
             ProductVM productVM = new ProductVM()
             {
                 Product = new Product(),
@@ -68,7 +48,7 @@ namespace Rocky.Controllers
                 ApplicationTypeSelectList  = _proRepo.GetAllDropDownList(WC.ApplicationTypeName)
             };
             
-        if(id==null)
+            if(id==null)
             {
                 //this is for created
                 return View(productVM);
@@ -101,7 +81,7 @@ namespace Rocky.Controllers
                 if (productVM.Product.Id == 0)
                 {
                     //creating
-                    //cách lấy hình ảnh từ input image
+                    //lấy hình ảnh từ input image
                     string upload = webRootPath + WC.ImagePath;
                     string filename = Guid.NewGuid().ToString();
                     string extension = Path.GetExtension(files[0].FileName);
@@ -173,12 +153,10 @@ namespace Rocky.Controllers
             {
                 return NotFound();
             }
-            //tự động load category khi load product để hiển thị
-            /* truy vấn EAGER LOADING (include) là khi load product nó sẽ đính kèm với việc load category tương ứng */
+
             Product product = _proRepo.FirstOrDefault(u=>u.Id==id,includeProperties:"Category,ApplicationType");
             
-            //find method chỉ làm việc với primary key
-            //product.Category = _db.Category.Find(product.CategoryID);
+
             if (product == null)
             {
                 return NotFound();
@@ -211,6 +189,50 @@ namespace Rocky.Controllers
             _proRepo.Remove(obj);
             _proRepo.Save();
             return RedirectToAction("Index");           
+        }
+
+        public IActionResult Interaction()
+        {
+            IEnumerable<Product> objList = _proRepo.GetAll(includeProperties: "Category,ApplicationType");
+            List<string> nameProduct = new List<string>();
+            foreach(var item in objList)
+            {
+                nameProduct.Add(item.Name);
+            }
+            ViewBag.NameProduct = nameProduct.ToList();
+            List<int> numberOfInteraction = new List<int>();
+            foreach(var item in objList)
+            {
+                numberOfInteraction.Add(item.Love);
+            }
+            ViewBag.Interaction = numberOfInteraction.ToList();
+            return View();
+        }
+
+        public IActionResult RankOfProduct()
+        {
+            IEnumerable<Product> productList = _proRepo.GetAll(includeProperties: "Category,ApplicationType");
+            List<string> nameProduct = new List<string>();
+            foreach(var item in productList)
+            {
+                nameProduct.Add(item.Name);
+            }
+            ViewBag.nameProduct = nameProduct.ToList();
+
+
+            List<int> numberofproduct = new List<int>();
+            IEnumerable<OrderDetail> orderDetailsList = _orderDRepo.GetAll();
+            foreach(var item in productList)
+            {
+                int a = orderDetailsList.Count(n => n.ProductId == item.Id);
+                if (a == 0) numberofproduct.Add(0);
+                else
+                {
+                    numberofproduct.Add(a);
+                }
+            }
+            ViewBag.NumberofProduct = numberofproduct.ToList();
+            return View();
         }
     }
 }

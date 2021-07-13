@@ -15,7 +15,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using JavaScriptEngineSwitcher.V8;
+using Rocky_Models;
+using Rocky.Hubs;
 using Microsoft.AspNetCore.Http;
 using JavaScriptEngineSwitcher.V8;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
@@ -42,6 +43,9 @@ namespace Rocky
                 .AddDefaultTokenProviders().AddDefaultUI() //cung cấp token khi chúng ta quên mk
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             //config session
+
+
+
             services.AddHttpContextAccessor();
             services.AddSession(Options=> {
                 Options.IdleTimeout = TimeSpan.FromMinutes(10); //thiết lập phiên làm việc
@@ -66,7 +70,10 @@ namespace Rocky
             services.AddScoped<IOrderHeaderRepository, OrderHeaderRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
-            
+            services.AddScoped<IMessRepository, MessRepository>();
+            services.AddScoped<IAppUserRepository, AppUserRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<ICouponRepository, CouponRepository>();
             services.AddAuthentication().AddFacebook(Options =>
             {
                 Options.AppId = "303791654706647";
@@ -74,8 +81,13 @@ namespace Rocky
             });
 
             services.AddControllersWithViews();
+            services.AddSignalR();
 
-           
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddReact();
+
+            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
+              .AddV8();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,14 +105,16 @@ namespace Rocky
             }
             app.UseHttpsRedirection();
             //create react
-        
+            app.UseReact(config =>
+            {
+
+            });
             //
             app.UseStaticFiles();
 
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
- 
             app.UseSession();
             app.UseEndpoints(endpoints =>
             {
@@ -108,7 +122,10 @@ namespace Rocky
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
+
+           
         }
     }
 }

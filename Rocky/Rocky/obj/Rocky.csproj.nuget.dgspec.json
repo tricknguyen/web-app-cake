@@ -50,21 +50,29 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Chart.js": {
+              "target": "Package",
+              "version": "[2.9.3, )"
+            },
+            "ChartJSCore": {
+              "target": "Package",
+              "version": "[1.5.8, )"
+            },
             "JavaScriptEngineSwitcher.Extensions.MsDependencyInjection": {
               "target": "Package",
               "version": "[3.3.0, )"
             },
             "JavaScriptEngineSwitcher.V8": {
               "target": "Package",
-              "version": "[3.12.1, )"
+              "version": "[3.12.3, )"
             },
             "JavaScriptEngineSwitcher.V8.Native.win-x64": {
               "target": "Package",
-              "version": "[3.12.1, )"
+              "version": "[3.12.3, )"
             },
             "Microsoft.AspNetCore.Authentication.Facebook": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
@@ -72,37 +80,45 @@
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.AspNetCore.SpaServices": {
               "target": "Package",
-              "version": "[3.1.14, )"
+              "version": "[3.1.16, )"
             },
             "Microsoft.AspNetCore.SpaServices.Extensions": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
+            },
+            "Microsoft.Azure.DocumentDB.Core": {
+              "target": "Package",
+              "version": "[2.14.1, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[5.0.7, )"
             },
             "Microsoft.VisualStudio.Web.BrowserLink": {
               "target": "Package",
@@ -122,11 +138,11 @@
             },
             "Syncfusion.EJ2.AspNet.Core": {
               "target": "Package",
-              "version": "[19.1.0.59, )"
+              "version": "[19.1.0.69, )"
             },
             "Syncfusion.EJ2.PdfViewer.AspNet.Core.Windows": {
               "target": "Package",
-              "version": "[19.1.0.59, )"
+              "version": "[19.1.0.69, )"
             },
             "Westwind.AspNetCore.LiveReload": {
               "target": "Package",
@@ -198,21 +214,25 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Chart.js": {
+              "target": "Package",
+              "version": "[2.9.3, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.VisualStudio.Web.BrowserLink": {
               "target": "Package",
@@ -281,13 +301,17 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Chart.js": {
+              "target": "Package",
+              "version": "[2.9.3, )"
+            },
             "Microsoft.AspNetCore.Mvc.ViewFeatures": {
               "target": "Package",
               "version": "[2.2.0, )"
             },
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.VisualStudio.Web.BrowserLink": {
               "target": "Package",
@@ -362,7 +386,11 @@
           "dependencies": {
             "Braintree": {
               "target": "Package",
-              "version": "[5.6.0, )"
+              "version": "[5.7.0, )"
+            },
+            "Chart.js": {
+              "target": "Package",
+              "version": "[2.9.3, )"
             },
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
@@ -370,7 +398,7 @@
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.Extensions.Options": {
               "target": "Package",

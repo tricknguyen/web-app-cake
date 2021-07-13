@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Rocky_Models.Coupon>
+
+
+<div class="container p-3 bg-white" style="margin-top:84px!important;">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary" style="color:crimson!important;">Category List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Coupon" asp-action="Create" class="btn btn-primary">
+                <i class="fas fa-plus"></i> &nbsp; Create New Coupon
+            </a>
+        </div>
+    </div>
+
+    <br /><br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Coupon Code
+                    </th>
+                    <th>
+                        Discount
+                    </th>
+                    <th>
+                        Max Discount
+                    </th>
+                    <th>
+                        Expiration Date
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td width="25%">@obj.CouponCode</td>
+                        <td width="25%">@obj.Discount</td>
+                        <td width="25%">@obj.MaxDiscount</td>
+                        <td width="25%">@obj.ExpirationDate</td>
+                        <td class="text-center">
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Coupon" asp-route-Id="@obj.Id" asp-action="Edit" class="btn " style="color:crimson!important;">
+                                    <i class="fas fa-edit"></i>
+
+                                </a>
+                                <a asp-controller="Coupon" asp-route-Id="@obj.Id" asp-action="Delete" class="btn" style="margin-left:15px!important; margin-right:15px!important;">
+                                    <i class="fas fa-trash-alt"></i>
+
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No category exists.</p>
+    }
+
+</div>
+

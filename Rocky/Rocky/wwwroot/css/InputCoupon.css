@@ -1,0 +1,71 @@
+﻿.coupon-form {
+    display: flex;
+}
+
+    .coupon-form > div {
+        background-color: crimson;
+        color:white;
+        border-color: crimson;
+    }
+
+        .coupon-form > div:hover {
+            background-color: white;
+            border-color: crimson;
+            color: crimson;
+        }
+
+        .coupon-form > div:focus {
+            background-color: white;
+            border-color: crimson;
+            color: crimson;
+        }
+
+    .coupon-form > input {
+        width: 300px;
+    }
+
+    .coupon-form > label {
+        padding-top: 8px;
+        color: crimson;
+    }
+
+.discount-price > label {
+    color: crimson;
+    border: 2px dotted crimson;
+    width: 455px;
+}
+
+.discount-price {
+    display: none;
+}
+
+.discount-price-content {
+    padding: 0 10px 0 10px;
+}
+
+.wrong-coupon {
+    display: none;
+    grid-template-columns: auto 20px;
+    padding: 10px;
+    position: absolute;
+    width: 455px;
+    background-color: white;
+    border: 2px solid red;
+    margin-top: -5px;
+}
+
+    .wrong-coupon i {
+        float: right;
+        color: red;
+        text-align: center;
+        padding: 10px 10px 0 0;
+    }
+
+    .wrong-coupon label {
+        color: red;
+        font-size: small;
+    }
+
+.fa-times-circle {
+    cursor: pointer;
+}
