@@ -53,20 +53,21 @@ namespace Rocky.Controllers
         public IActionResult Index(double? total)
         {
             List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
-            //lấy dữ liệu từ session
+            //GET DATA FROM SESSION
             if(HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart)!=null
                 && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Count() > 0 ) 
             {
                 shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
             }
             List<int> prodInCart = shoppingCartList.Select(i=>i.ProductId).ToList();
-            //đã truy xuất được tất cả dữ liệu trong session ra prodIncart
-            //IEnumerable<Product> prodList = _db.Product.Where(u => prodInCart.Contains(u.Id));
+
+
             IEnumerable<Product> prodListTemp = _prodRepo.GetAll(u => prodInCart.Contains(u.Id)); //lấy tất cả các id phù hợp với prodincart
             //IList<Product> prodList = new List<Product>();
             
             CartVM cartVM = new CartVM();
-            
+
+           
            
             foreach(var cartObj in shoppingCartList)
             {
@@ -114,10 +115,9 @@ namespace Rocky.Controllers
 
         public IActionResult Summary(double total)
         {
-            ApplicationUser applicationUser;         
-            applicationUser = new ApplicationUser();
+            ApplicationUser applicationUser = new ApplicationUser();        
           
-            //tao token
+            //CREATE TOKEN
             var gateway = _brain.GetGateway();
             var clientToken = gateway.ClientToken.Generate(); 
             //token dữ liệu tạm thời nên dùng viewbag
@@ -136,7 +136,6 @@ namespace Rocky.Controllers
                 shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
             }
             List<int> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
-            //đã truy xuất được tất cả dữ liệu trong session ra prodIncart
             //IEnumerable<Product> prodList = _db.Product.Where(u => prodInCart.Contains(u.Id));
             IEnumerable<Product> prodList = _prodRepo.GetAll(u => prodInCart.Contains(u.Id)); //chưa lấy đc sqft
             //lấy tất cả các dữ liệu truy xuất của iser đấy
@@ -205,6 +204,7 @@ namespace Rocky.Controllers
                         SubmitForSettlement = true //submit sau khi đã xác thực xong
                     }
                 };
+
                 var gateway = _brain.GetGateway();
                 Result<Transaction> result = gateway.Transaction.Sale(request);
                 if(result.Target.ProcessorResponseText=="Approved")
@@ -221,6 +221,8 @@ namespace Rocky.Controllers
             //  return RedirectToAction(nameof(InquiryConfirmation), new { id = orderHeader.Id });
             return RedirectToAction("MyOrder", "Order");
         }
+        
+        
         public IActionResult InquiryConfirmation(int id=0)
         {
             OrderHeader orderHeader = _orderHRepo.FirstOrDefault(u => u.Id == id); //orderheader sẽ lấy dữ liệu từ orderheader_repo
@@ -228,6 +230,8 @@ namespace Rocky.Controllers
             HttpContext.Session.Clear();
             return View(orderHeader);
         }
+        
+        
         public IActionResult Remove(int id)
         {
             List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();

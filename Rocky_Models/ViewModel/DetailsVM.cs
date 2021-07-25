@@ -14,7 +14,10 @@ namespace Rocky_Models.ViewModel
         {
             Product = new Product();
         }//k cần làm trong controller
-        
+
+        public Comment Comment { get; set; }
+
+        public IEnumerable<Comment> CommentList { get; set; }
         public bool ExistsInCart { get; set; }
     }
 }

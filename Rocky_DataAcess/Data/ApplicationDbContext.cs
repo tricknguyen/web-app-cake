@@ -15,7 +15,14 @@ namespace Rocky_DataAcess
         {
 
         }
-
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
+        //    builder.Entity<Message>()
+        //        .HasOne<AppUser>(a => a.Sender)
+        //        .WithMany(d => d.Messages)
+        //        .HasForeignKey(d => d.UserID);
+        //}
         public DbSet<Category> Category { get; set; }
         public DbSet<ApplicationType> ApplicationType { get; set; }
         public DbSet<Product> Product { get; set; }
@@ -24,13 +31,11 @@ namespace Rocky_DataAcess
         public DbSet<InquiryDetail> InquiryDetail { get; set; }
         public DbSet<OrderHeader> OrderHeader { get; set; }
         public DbSet<OrderDetail> OrderDetail { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<Comment> Comment { get; set; }
+        public DbSet<Coupon> Coupon { get; set; }
+
     }
 }
-/*namespace Solution.Data
-{
-    public class ApplicationDbContext2 : DbContext
-    {
-        public ApplicationDbContext2(DbContextOptions<ApplicationDbContext2> options) : base(options) { }
-        public DbSet<Solution>
-    }
-}*/
+

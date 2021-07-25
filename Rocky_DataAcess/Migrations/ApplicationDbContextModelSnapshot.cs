@@ -16,7 +16,7 @@ namespace Rocky_DataAcess.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -257,6 +257,56 @@ namespace Rocky_DataAcess.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("Rocky_Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedByUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("Comment");
+                });
+
+            modelBuilder.Entity("Rocky_Models.Coupon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CouponCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MaxDiscount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coupon");
+                });
+
             modelBuilder.Entity("Rocky_Models.InquiryDetail", b =>
                 {
                     b.Property<int>("Id")
@@ -309,6 +359,37 @@ namespace Rocky_DataAcess.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.ToTable("InquiryHeader");
+                });
+
+            modelBuilder.Entity("Rocky_Models.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("SenderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("When")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Rocky_Models.OrderDetail", b =>
@@ -416,6 +497,9 @@ namespace Rocky_DataAcess.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Love")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -432,9 +516,19 @@ namespace Rocky_DataAcess.Migrations
                     b.ToTable("Product");
                 });
 
+            modelBuilder.Entity("Rocky_Models.AppUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("AppUser");
+                });
+
             modelBuilder.Entity("Rocky_Models.ApplicationUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -490,6 +584,23 @@ namespace Rocky_DataAcess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Rocky_Models.Comment", b =>
+                {
+                    b.HasOne("Rocky_Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId");
+
+                    b.HasOne("Rocky_Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Rocky_Models.InquiryDetail", b =>
                 {
                     b.HasOne("Rocky_Models.InquiryHeader", "InquiryHeader")
@@ -516,6 +627,15 @@ namespace Rocky_DataAcess.Migrations
                         .HasForeignKey("ApplicationUserId");
 
                     b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Rocky_Models.Message", b =>
+                {
+                    b.HasOne("Rocky_Models.AppUser", "Sender")
+                        .WithMany("Messages")
+                        .HasForeignKey("SenderId");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("Rocky_Models.OrderDetail", b =>
@@ -563,6 +683,11 @@ namespace Rocky_DataAcess.Migrations
                     b.Navigation("ApplicationType");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Rocky_Models.AppUser", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

@@ -37,5 +37,7 @@ namespace Rocky_Models
         [NotMapped] //giups cho temsqft khi add minigration k bi pushe vao database
         [Range(1,1000, ErrorMessage = "Sqft must be greater than 0")]
         public int TempSqFt { get; set; }
+
+        public int Love { get; set; }
     }
 }

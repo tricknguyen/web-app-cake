@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "Braintree/5.6.0": {
+      "Braintree/5.7.0": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "9.0.1",
@@ -14,6 +14,9 @@
         "runtime": {
           "lib/netstandard2.0/Braintree.dll": {}
         }
+      },
+      "Chart.js/2.9.3": {
+        "type": "package"
       },
       "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
         "type": "package",
@@ -70,7 +73,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Http.Extensions.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Http.Features/5.0.5": {
+      "Microsoft.AspNetCore.Http.Features/5.0.7": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.1",
@@ -865,17 +868,32 @@
     }
   },
   "libraries": {
-    "Braintree/5.6.0": {
-      "sha512": "mphAAipDOphSIRQxqQsrJxi6JyfhCbEx3guX1dedWqF96KNm8Ehg8A0HVbu5rNAf9trXFw4nXdC2uo8Wxg3fMg==",
+    "Braintree/5.7.0": {
+      "sha512": "IyOBpzXBkTS8QI0pffVhSo3t9buBOT5xXx2c63rF7mqptBIX2/5ucptl+Wz4T1388h6vCOAdKgx1xfrT40FSDA==",
       "type": "package",
-      "path": "braintree/5.6.0",
+      "path": "braintree/5.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "braintree.5.6.0.nupkg.sha512",
+        "braintree.5.7.0.nupkg.sha512",
         "braintree.nuspec",
         "lib/net452/Braintree.dll",
         "lib/netstandard2.0/Braintree.dll"
+      ]
+    },
+    "Chart.js/2.9.3": {
+      "sha512": "SY8PuXOJANgsEGMtuXPb/gxazfXdySUuFwTPbQUbw/YKiltR6FJ3mXrLFpr6N2MSCS7oUtfOhTotxLifyJcQNA==",
+      "type": "package",
+      "path": "chart.js/2.9.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "chart.js.2.9.3.nupkg.sha512",
+        "chart.js.nuspec",
+        "content/Content/Chart.css",
+        "content/Content/Chart.min.css",
+        "content/Scripts/Chart.js",
+        "content/Scripts/Chart.min.js"
       ]
     },
     "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
@@ -930,10 +948,10 @@
         "microsoft.aspnetcore.http.extensions.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Http.Features/5.0.5": {
-      "sha512": "UZxVOurL/kSpWRQf4XAVMNeOxLyHpOc32NdYxkli807S5cTposKnAH3H6sQ0+bMrkN3MP3fdezW9i8PwKbmb5w==",
+    "Microsoft.AspNetCore.Http.Features/5.0.7": {
+      "sha512": "bF4sJrrHHFooGKjGMCU+qqEz0gTRSHDieYXCgn18ci8gV3VS5wIOP2d0WEXV5WmjDzXxfCLoQpBJIl4rogdSdA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.http.features/5.0.5",
+      "path": "microsoft.aspnetcore.http.features/5.0.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -945,7 +963,7 @@
         "lib/net5.0/Microsoft.AspNetCore.Http.Features.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.xml",
-        "microsoft.aspnetcore.http.features.5.0.5.nupkg.sha512",
+        "microsoft.aspnetcore.http.features.5.0.7.nupkg.sha512",
         "microsoft.aspnetcore.http.features.nuspec"
       ]
     },
@@ -3479,9 +3497,10 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Braintree >= 5.6.0",
+      "Braintree >= 5.7.0",
+      "Chart.js >= 2.9.3",
       "Microsoft.AspNetCore.Http.Extensions >= 2.2.0",
-      "Microsoft.AspNetCore.Http.Features >= 5.0.5",
+      "Microsoft.AspNetCore.Http.Features >= 5.0.7",
       "Microsoft.Extensions.Options >= 5.0.0",
       "Microsoft.VisualStudio.Web.BrowserLink >= 2.2.0",
       "Westwind.AspNetCore.LiveReload >= 0.3.2"
@@ -3528,7 +3547,11 @@
         "dependencies": {
           "Braintree": {
             "target": "Package",
-            "version": "[5.6.0, )"
+            "version": "[5.7.0, )"
+          },
+          "Chart.js": {
+            "target": "Package",
+            "version": "[2.9.3, )"
           },
           "Microsoft.AspNetCore.Http.Extensions": {
             "target": "Package",
@@ -3536,7 +3559,7 @@
           },
           "Microsoft.AspNetCore.Http.Features": {
             "target": "Package",
-            "version": "[5.0.5, )"
+            "version": "[5.0.7, )"
           },
           "Microsoft.Extensions.Options": {
             "target": "Package",

@@ -20,9 +20,9 @@ namespace Rocky_Models
         public string City { get; set; }
         [NotMapped]
         public string Cmnd { get; set; }
-        [NotMapped]
-        public string Name2 { get; set; }
 
-      
+        public int Rank { get; set; }
+
+
     }
 }

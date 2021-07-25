@@ -10,8 +10,10 @@ namespace Rocky_Models.ViewModel
         public ProductUserVM()
         {
             ProductList = new List<Product>();
+            orderTotal = 0;
         }
         public ApplicationUser ApplicationUser { get; set; }
         public IList<Product> ProductList { get; set; }
+        public double orderTotal { get; set; }
     }
 }

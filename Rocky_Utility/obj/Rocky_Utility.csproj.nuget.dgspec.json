@@ -42,7 +42,11 @@
           "dependencies": {
             "Braintree": {
               "target": "Package",
-              "version": "[5.6.0, )"
+              "version": "[5.7.0, )"
+            },
+            "Chart.js": {
+              "target": "Package",
+              "version": "[2.9.3, )"
             },
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
@@ -50,7 +54,7 @@
             },
             "Microsoft.AspNetCore.Http.Features": {
               "target": "Package",
-              "version": "[5.0.5, )"
+              "version": "[5.0.7, )"
             },
             "Microsoft.Extensions.Options": {
               "target": "Package",

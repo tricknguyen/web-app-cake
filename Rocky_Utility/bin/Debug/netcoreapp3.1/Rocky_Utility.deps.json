@@ -8,9 +8,10 @@
     ".NETCoreApp,Version=v3.1": {
       "Rocky_Utility/1.0.0": {
         "dependencies": {
-          "Braintree": "5.6.0",
+          "Braintree": "5.7.0",
+          "Chart.js": "2.9.3",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
-          "Microsoft.AspNetCore.Http.Features": "5.0.5",
+          "Microsoft.AspNetCore.Http.Features": "5.0.7",
           "Microsoft.Extensions.Options": "5.0.0",
           "Microsoft.VisualStudio.Web.BrowserLink": "2.2.0",
           "Westwind.AspNetCore.LiveReload": "0.3.2"
@@ -19,18 +20,19 @@
           "Rocky_Utility.dll": {}
         }
       },
-      "Braintree/5.6.0": {
+      "Braintree/5.7.0": {
         "dependencies": {
           "Newtonsoft.Json": "9.0.1",
           "System.Xml.XPath.XmlDocument": "4.3.0"
         },
         "runtime": {
           "lib/netstandard2.0/Braintree.dll": {
-            "assemblyVersion": "5.6.0.0",
-            "fileVersion": "5.6.0.0"
+            "assemblyVersion": "5.7.0.0",
+            "fileVersion": "5.7.0.0"
           }
         }
       },
+      "Chart.js/2.9.3": {},
       "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Server.Abstractions": "2.2.0",
@@ -40,13 +42,13 @@
       },
       "Microsoft.AspNetCore.Hosting.Server.Abstractions/2.2.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Http.Features": "5.0.5",
+          "Microsoft.AspNetCore.Http.Features": "5.0.7",
           "Microsoft.Extensions.Configuration.Abstractions": "2.2.0"
         }
       },
       "Microsoft.AspNetCore.Http.Abstractions/2.2.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Http.Features": "5.0.5",
+          "Microsoft.AspNetCore.Http.Features": "5.0.7",
           "System.Text.Encodings.Web": "4.5.0"
         }
       },
@@ -58,7 +60,7 @@
           "System.Buffers": "4.5.0"
         }
       },
-      "Microsoft.AspNetCore.Http.Features/5.0.5": {
+      "Microsoft.AspNetCore.Http.Features/5.0.7": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.1",
           "System.IO.Pipelines": "5.0.1"
@@ -66,7 +68,7 @@
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {
             "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.521.16708"
+            "fileVersion": "5.0.721.26309"
           }
         }
       },
@@ -568,12 +570,19 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Braintree/5.6.0": {
+    "Braintree/5.7.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mphAAipDOphSIRQxqQsrJxi6JyfhCbEx3guX1dedWqF96KNm8Ehg8A0HVbu5rNAf9trXFw4nXdC2uo8Wxg3fMg==",
-      "path": "braintree/5.6.0",
-      "hashPath": "braintree.5.6.0.nupkg.sha512"
+      "sha512": "sha512-IyOBpzXBkTS8QI0pffVhSo3t9buBOT5xXx2c63rF7mqptBIX2/5ucptl+Wz4T1388h6vCOAdKgx1xfrT40FSDA==",
+      "path": "braintree/5.7.0",
+      "hashPath": "braintree.5.7.0.nupkg.sha512"
+    },
+    "Chart.js/2.9.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SY8PuXOJANgsEGMtuXPb/gxazfXdySUuFwTPbQUbw/YKiltR6FJ3mXrLFpr6N2MSCS7oUtfOhTotxLifyJcQNA==",
+      "path": "chart.js/2.9.3",
+      "hashPath": "chart.js.2.9.3.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
       "type": "package",
@@ -603,12 +612,12 @@
       "path": "microsoft.aspnetcore.http.extensions/2.2.0",
       "hashPath": "microsoft.aspnetcore.http.extensions.2.2.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Http.Features/5.0.5": {
+    "Microsoft.AspNetCore.Http.Features/5.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UZxVOurL/kSpWRQf4XAVMNeOxLyHpOc32NdYxkli807S5cTposKnAH3H6sQ0+bMrkN3MP3fdezW9i8PwKbmb5w==",
-      "path": "microsoft.aspnetcore.http.features/5.0.5",
-      "hashPath": "microsoft.aspnetcore.http.features.5.0.5.nupkg.sha512"
+      "sha512": "sha512-bF4sJrrHHFooGKjGMCU+qqEz0gTRSHDieYXCgn18ci8gV3VS5wIOP2d0WEXV5WmjDzXxfCLoQpBJIl4rogdSdA==",
+      "path": "microsoft.aspnetcore.http.features/5.0.7",
+      "hashPath": "microsoft.aspnetcore.http.features.5.0.7.nupkg.sha512"
     },
     "Microsoft.CSharp/4.0.1": {
       "type": "package",
