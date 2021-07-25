@@ -42,7 +42,7 @@ It is a web application with gorgeous interface and fully basic function. .
 I’m very appreciate about your caring. Hope you will enjoy and satify about my website. If you have any question, feel free to leave a message at tricknguyen26072@gmail.com.
 
 ## Update  
-I updated sql file in database/hotelmanage.sql if you need to create database.
+I updated sql file in database/cakemanage.sql if you need to create database.
  
 
 
